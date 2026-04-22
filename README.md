@@ -76,8 +76,4 @@ Because the application is a serverless frontend, setup is incredibly fast.
    npm run dev
    ```
 
-5. **Production Build**:
-   ```bash
-   npm run build
-   ```
-   This will output a static bundle into the `dist/` folder, ready for instantaneous deployment to Vercel, Netlify, or AWS S3.
+
