@@ -13,15 +13,15 @@ export const WeatherSkeleton = () => {
             </div>
             
             <div className="flex items-center justify-center md:justify-start gap-6 mb-4">
-              <Skeleton className="h-16 w-24 bg-white/20" />
-              <div className="h-16 w-[1px] bg-white/10 hidden md:block" />
+              <Skeleton className="h-20 w-32 bg-white/20" />
+              <div className="h-20 w-[1px] bg-white/10 hidden md:block" />
               <div className="flex flex-col items-center md:items-start gap-1">
                 <Skeleton className="h-12 w-12 bg-white/20 rounded-full" />
-                <Skeleton className="h-6 w-20 bg-white/20 rounded-md" />
+                <Skeleton className="h-7 w-24 bg-white/20 rounded-md" />
               </div>
             </div>
 
-            <Skeleton className="h-4 w-48 bg-white/20 mx-auto md:mx-0" />
+            <Skeleton className="h-5 w-56 bg-white/20 mx-auto md:mx-0" />
           </div>
           
           <Separator orientation="vertical" className="hidden md:block bg-white/10 h-auto self-stretch mx-4" />
@@ -29,9 +29,9 @@ export const WeatherSkeleton = () => {
 
           <div className="grid grid-cols-2 gap-8 w-full md:w-auto p-2">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="space-y-2">
-                <Skeleton className="h-4 w-16 bg-white/20 mx-auto md:mx-0" />
-                <Skeleton className="h-6 w-24 bg-white/20 mx-auto md:mx-0" />
+              <div key={i} className="space-y-3">
+                <Skeleton className="h-5 w-20 bg-white/20 mx-auto md:mx-0" />
+                <Skeleton className="h-8 w-28 bg-white/20 mx-auto md:mx-0" />
               </div>
             ))}
           </div>
@@ -40,10 +40,10 @@ export const WeatherSkeleton = () => {
         <Separator className="bg-white/10 my-8 w-full" />
         
         <div>
-          <Skeleton className="h-4 w-24 bg-white/20 mb-4" />
+          <Skeleton className="h-5 w-32 bg-white/20 mb-4" />
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-4">
             {[1, 2, 3, 4, 5].map((i) => (
-              <Skeleton key={i} className="h-[100px] w-full rounded-xl bg-white/10" />
+              <Skeleton key={i} className="h-[135px] w-full rounded-xl bg-white/10" />
             ))}
           </div>
         </div>

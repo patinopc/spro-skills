@@ -12,11 +12,11 @@ export const HistorySkeleton = () => {
         {[1, 2, 3, 4, 5].map((i) => (
           <Card key={i} className="bg-white/60 backdrop-blur-sm border-gray-100 shadow-sm border-none">
             <CardContent className="p-3 flex items-center justify-between">
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-24 bg-gray-300" />
-                <Skeleton className="h-3 w-16 bg-gray-200" />
+              <div className="space-y-3">
+                <Skeleton className="h-5 w-32 bg-gray-300" />
+                <Skeleton className="h-4 w-20 bg-gray-200" />
               </div>
-              <Skeleton className="h-6 w-10 bg-gray-300" />
+              <Skeleton className="h-8 w-12 bg-gray-300" />
             </CardContent>
           </Card>
         ))}
