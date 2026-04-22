@@ -3,7 +3,8 @@ import { useWeather } from "../hooks/useWeather";
 import { SearchForm } from "../components/organisms/SearchForm";
 import { WeatherDisplay } from "../components/organisms/WeatherDisplay";
 import { HistoryGrid } from "../components/organisms/HistoryGrid";
-import { Skeleton } from "../components/atoms/ui/skeleton";
+import { WeatherSkeleton } from "../components/skeletons/WeatherSkeleton";
+import { HistorySkeleton } from "../components/skeletons/HistorySkeleton";
 
 export const WeatherPlannerPage = () => {
   const {
@@ -44,23 +45,16 @@ export const WeatherPlannerPage = () => {
           </div>
         )}
 
-        {loading && (
-          <div className="space-y-4">
-            <Skeleton className="h-[300px] w-full rounded-2xl bg-blue-900/10" />
-            <div className="grid grid-cols-5 gap-4">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <Skeleton key={i} className="h-[80px] w-full rounded-xl bg-blue-900/10" />
-              ))}
-            </div>
-          </div>
-        )}
+        {loading && <WeatherSkeleton />}
 
         {!loading && currentWeather && <WeatherDisplay data={currentWeather} />}
       </div>
 
       {/* Right Column: Sidebar History */}
       <div className="w-full lg:w-1/3 flex-shrink-0 sticky top-6">
-        {!loading && (
+        {loading ? (
+          <HistorySkeleton />
+        ) : (
           <HistoryGrid 
             history={history} 
             onClear={clearHistory} 
