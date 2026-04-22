@@ -25,7 +25,7 @@ export const weatherService = {
     const aqiUrl = import.meta.env.VITE_AIR_QUALITY_API_URL;
 
     const [weatherRes, aqiRes] = await Promise.all([
-      axios.get(`${weatherUrl}?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,wind_speed_10m,visibility&timezone=auto`),
+      axios.get(`${weatherUrl}?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,wind_speed_10m,visibility&daily=temperature_2m_max,temperature_2m_min,weather_code&past_days=5&timezone=auto`),
       axios.get(`${aqiUrl}?latitude=${lat}&longitude=${lon}&current=european_aqi,pm2_5,pm10&timezone=auto`)
     ]);
 
@@ -47,6 +47,22 @@ export const weatherService = {
       return `${month}/${day}/${year} at ${strTime}`;
     };
 
+    const daily = weatherRes.data.daily || {};
+    const pastHistory = [];
+    
+    if (daily.time) {
+      for (let i = 0; i < 5; i++) {
+        if (daily.time[i]) {
+          pastHistory.push({
+            date: daily.time[i],
+            maxTemp: daily.temperature_2m_max[i],
+            minTemp: daily.temperature_2m_min[i],
+            weatherCode: daily.weather_code[i]
+          });
+        }
+      }
+    }
+
     return {
       city: name,
       country: country || "",
@@ -61,7 +77,8 @@ export const weatherService = {
       pm10: aqiCurrent.pm10,
       timestamp: Date.now(),
       localTime: formatLocalTime(weatherCurrent.time),
-      timezone: weatherRes.data.timezone_abbreviation || ""
+      timezone: weatherRes.data.timezone_abbreviation || "",
+      history: pastHistory
     };
   }
 };

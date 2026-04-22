@@ -107,6 +107,32 @@ export const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ data }) => {
             />
           </div>
         </div>
+
+        {data.history && data.history.length > 0 && (
+          <>
+            <Separator className="bg-white/10 my-8 w-full" />
+            <div>
+              <h4 className="text-blue-200 mb-4 font-medium tracking-wide uppercase text-xs">Past 5 Days</h4>
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-4">
+                {data.history.map((day) => {
+                  const dateObj = new Date(day.date + 'T00:00:00'); // Force local parsing
+                  const dayName = dateObj.toLocaleDateString("en-US", { weekday: "short" });
+                  return (
+                    <div key={day.date} className="flex flex-col items-center justify-center bg-white/5 rounded-xl p-3 border border-white/10 hover:bg-white/10 transition-colors text-center">
+                      <span className="text-blue-200 text-sm font-medium">{dayName}</span>
+                      <span className="text-[10px] text-blue-300/60 mb-1">{day.date.slice(5)}</span>
+                      <WeatherIcon code={day.weatherCode} className="h-8 w-8 my-1" />
+                      <div className="flex gap-2 text-sm mt-1">
+                        <span className="font-bold text-white">{Math.round(day.maxTemp)}{"\u00B0"}</span>
+                        <span className="text-blue-300">{Math.round(day.minTemp)}{"\u00B0"}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        )}
       </CardContent>
     </Card>
   );

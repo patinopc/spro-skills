@@ -22,4 +22,12 @@ export type WeatherData = {
   timestamp: number;
   localTime: string;
   timezone: string;
+  history?: DailyWeather[];
+};
+
+export type DailyWeather = {
+  date: string;
+  maxTemp: number;
+  minTemp: number;
+  weatherCode: number;
 };
