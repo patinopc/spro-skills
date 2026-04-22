@@ -23,20 +23,20 @@ export const HistoryGrid: React.FC<HistoryGridProps> = ({ history, onClear, onIt
           Clear History
         </Button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+      <div className="flex flex-col gap-2">
         {history.map((item) => (
           <Card 
             key={`${item.latitude}-${item.longitude}`}
-            className="bg-white/60 backdrop-blur-sm border-gray-100 hover:shadow-md hover:border-blue-300 transition-all cursor-pointer" 
+            className="bg-white/60 backdrop-blur-sm border-gray-100 hover:bg-blue-50/50 hover:border-blue-200 transition-all cursor-pointer shadow-sm" 
             onClick={() => onItemClick(item.latitude, item.longitude, item.city, item.country)}
           >
-            <CardContent className="p-4 flex items-center justify-between">
+            <CardContent className="p-3 flex items-center justify-between">
               <div>
-                <h4 className="font-medium text-gray-800">{item.city}</h4>
-                <p className="text-sm text-gray-500">{getWeatherCondition(item.weatherCode)}</p>
+                <h4 className="text-sm font-semibold text-gray-800">{item.city}</h4>
+                <p className="text-xs text-gray-500">{getWeatherCondition(item.weatherCode)}</p>
               </div>
-              <div className="text-right">
-                <div className="text-2xl font-semibold text-gray-700">{Math.round(item.temperature)}{"\u00B0"}</div>
+              <div className="flex items-center gap-3">
+                <div className="text-lg font-bold text-gray-700">{Math.round(item.temperature)}{"\u00B0"}</div>
               </div>
             </CardContent>
           </Card>
